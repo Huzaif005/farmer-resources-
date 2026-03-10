@@ -5,7 +5,7 @@
 
   // Handle GitHub Pages SPA routing
   if (window.location.search.startsWith('?/')) {
-    const path = window.location.search.slice(2);
+    const path = '/farmer-resources-' + window.location.search.slice(1);
     window.history.replaceState(null, '', path);
   }
 
