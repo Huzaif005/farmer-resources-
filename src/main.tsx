@@ -3,5 +3,11 @@
   import App from "./app/App.tsx";
   import "./styles/index.css";
 
+  // Handle GitHub Pages SPA routing
+  if (window.location.search.startsWith('?/')) {
+    const path = window.location.search.slice(2);
+    window.history.replaceState(null, '', path);
+  }
+
   createRoot(document.getElementById("root")!).render(<App />);
   
