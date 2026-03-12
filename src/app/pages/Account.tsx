@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
-import { User, MapPin, Phone, Mail, Building } from "lucide-react";
+import { User, MapPin, Phone, Mail, Building, Sprout } from "lucide-react";
 import { toast } from "sonner";
 
 export function Account() {
@@ -16,6 +16,7 @@ export function Account() {
   const [farmName, setFarmName] = useState(user?.farmName || "");
   const [address, setAddress] = useState(user?.address || "");
   const [totalArea, setTotalArea] = useState(user?.totalArea || "");
+  const [cropType, setCropType] = useState(user?.cropType || "");
 
   useEffect(() => {
     if (user) {
@@ -23,6 +24,7 @@ export function Account() {
       setFarmName(user.farmName || "");
       setAddress(user.address || "");
       setTotalArea(user.totalArea || "");
+      setCropType(user.cropType || "");
     }
   }, [user]);
 
@@ -32,7 +34,7 @@ export function Account() {
   };
 
   const handleFarmUpdate = () => {
-    updateUser({ farmName, address, totalArea });
+    updateUser({ farmName, address, totalArea, cropType });
     toast.success(t("farmDetailsUpdated") || "Farm details updated successfully");
   };
 
@@ -118,6 +120,18 @@ export function Account() {
                 onChange={(e) => setTotalArea(e.target.value)} 
                 placeholder="e.g. 5.5" 
               />
+            </div>
+            <div className="space-y-1">
+              <Label>{t("cropType") || "Crop Type"}</Label>
+              <div className="relative">
+                <Sprout className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Input 
+                  value={cropType} 
+                  onChange={(e) => setCropType(e.target.value)} 
+                  placeholder="e.g. Wheat, Corn, Soybeans" 
+                  className="pl-9" 
+                />
+              </div>
             </div>
             <Button onClick={handleFarmUpdate} className="w-full bg-green-600 hover:bg-green-700">
               {t("update") || "Update"}

@@ -8,6 +8,7 @@ export interface User {
   phone?: string;
   address?: string;
   totalArea?: string;
+  cropType?: string;
 }
 
 interface AuthContextType {
