@@ -121,6 +121,18 @@ const translations = {
     darkMode: "Dark Mode",
     lightMode: "Light Mode",
     language: "Language",
+    
+    // Account
+    farmerInformation: "Farmer Information",
+    manageAccountDetails: "Manage your account settings and farm profile",
+    personalDetails: "Personal Details",
+    phone: "Phone Number",
+    enterFarmAddress: "Enter farm address",
+    address: "Farm Address",
+    farmTotalArea: "Total Area (Acres)",
+    farmDetails: "Farm Details",
+    personalDetailsUpdated: "Personal details updated successfully",
+    farmDetailsUpdated: "Farm details updated successfully",
   },
   hi: {
     // Navigation
@@ -234,6 +246,18 @@ const translations = {
     darkMode: "डार्क मोड",
     lightMode: "लाइट मोड",
     language: "भाषा",
+
+    // Account
+    farmerInformation: "किसान की जानकारी",
+    manageAccountDetails: "अपनी खाता सेटिंग और खेत प्रोफ़ाइल प्रबंधित करें",
+    personalDetails: "व्यक्तिगत विवरण",
+    phone: "फ़ोन नंबर",
+    enterFarmAddress: "खेत का पता दर्ज करें",
+    address: "खेत का पता",
+    farmTotalArea: "कुल क्षेत्रफल (एकड़)",
+    farmDetails: "खेत का विवरण",
+    personalDetailsUpdated: "व्यक्तिगत विवरण सफलतापूर्वक अपडेट किया गया",
+    farmDetailsUpdated: "खेत का विवरण सफलतापूर्वक अपडेट किया गया",
   },
   mr: {
     // Navigation
@@ -347,6 +371,18 @@ const translations = {
     darkMode: "डार्क मोड",
     lightMode: "लाइट मोड",
     language: "भाषा",
+
+    // Account
+    farmerInformation: "शेतकऱ्याची माहिती",
+    manageAccountDetails: "तुमची खाते सेटिंग्ज आणि शेत प्रोफाइल व्यवस्थापित करा",
+    personalDetails: "वैयक्तिक तपशील",
+    phone: "फोन क्रमांक",
+    enterFarmAddress: "शेताचा पत्ता प्रविष्ट करा",
+    address: "शेताचा पत्ता",
+    farmTotalArea: "एकूण क्षेत्र (एकर)",
+    farmDetails: "शेताचा तपशील",
+    personalDetailsUpdated: "वैयक्तिक तपशील यशस्वीरित्या अद्यतनित केले",
+    farmDetailsUpdated: "शेताचा तपशील यशस्वीरित्या अद्यतनित केले",
   },
 };
 
