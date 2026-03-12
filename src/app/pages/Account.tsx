@@ -41,7 +41,7 @@ export function Account() {
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
       <div>
-        <h1 className="text-3xl font-bold">{t("farmerInformation") || "Farmer Information"}</h1>
+        <h1 className="text-3xl font-bold">{t("profileManagement") || "Profile Management"}</h1>
         <p className="text-gray-600 dark:text-gray-400">
           {t("manageAccountDetails") || "Manage your account settings and farm profile"}
         </p>

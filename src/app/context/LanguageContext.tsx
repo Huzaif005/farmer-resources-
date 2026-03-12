@@ -123,7 +123,7 @@ const translations = {
     language: "Language",
     
     // Account
-    farmerInformation: "Farmer Information",
+    profileManagement: "Profile Management",
     manageAccountDetails: "Manage your account settings and farm profile",
     personalDetails: "Personal Details",
     phone: "Phone Number",
@@ -249,7 +249,7 @@ const translations = {
     language: "भाषा",
 
     // Account
-    farmerInformation: "किसान की जानकारी",
+    profileManagement: "प्रोफ़ाइल प्रबंधन",
     manageAccountDetails: "अपनी खाता सेटिंग और खेत प्रोफ़ाइल प्रबंधित करें",
     personalDetails: "व्यक्तिगत विवरण",
     phone: "फ़ोन नंबर",
@@ -375,7 +375,7 @@ const translations = {
     language: "भाषा",
 
     // Account
-    farmerInformation: "शेतकऱ्याची माहिती",
+    profileManagement: "प्रोफाइल व्यवस्थापन",
     manageAccountDetails: "तुमची खाते सेटिंग्ज आणि शेत प्रोफाइल व्यवस्थापित करा",
     personalDetails: "वैयक्तिक तपशील",
     phone: "फोन क्रमांक",

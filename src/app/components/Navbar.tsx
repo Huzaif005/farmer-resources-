@@ -1,7 +1,7 @@
 import { Bell, User, LogOut, Moon, Sun, Languages } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useLanguage } from "../context/LanguageContext";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useTheme } from "next-themes";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
@@ -91,8 +91,12 @@ export function Navbar() {
             <DropdownMenuContent align="end" className="w-56">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => navigate("/account")}>Profile Settings</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate("/account")}>Farm Settings</DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/account">Profile Settings</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/account">Farm Settings</Link>
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleLogout} className="text-red-600">
                 <LogOut className="mr-2 h-4 w-4" />

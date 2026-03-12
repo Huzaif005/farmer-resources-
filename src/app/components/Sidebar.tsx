@@ -4,7 +4,8 @@ import {
   Sprout, 
   Package, 
   Users, 
-  DollarSign 
+  DollarSign,
+  UserCircle 
 } from "lucide-react";
 import { cn } from "./ui/utils";
 import { useLanguage } from "../context/LanguageContext";
@@ -19,6 +20,7 @@ export function Sidebar() {
     { name: t("resources"), href: "/resources", icon: Package },
     { name: t("labor"), href: "/labor", icon: Users },
     { name: t("expenses"), href: "/expenses", icon: DollarSign },
+    { name: t("profileManagement") || "Profile Management", href: "/account", icon: UserCircle },
   ];
 
   return (
