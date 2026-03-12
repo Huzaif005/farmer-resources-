@@ -91,8 +91,8 @@ export function Navbar() {
             <DropdownMenuContent align="end" className="w-56">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile Settings</DropdownMenuItem>
-              <DropdownMenuItem>Farm Settings</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/account")}>Profile Settings</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/account")}>Farm Settings</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleLogout} className="text-red-600">
                 <LogOut className="mr-2 h-4 w-4" />

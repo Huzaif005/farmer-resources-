@@ -8,6 +8,7 @@ import { Crops } from "./pages/Crops";
 import { Resources } from "./pages/Resources";
 import { Labor } from "./pages/Labor";
 import { Expenses } from "./pages/Expenses";
+import { Account } from "./pages/Account";
 
 export const router = createHashRouter([
   {
@@ -22,6 +23,7 @@ export const router = createHashRouter([
       { path: "resources", Component: Resources },
       { path: "labor", Component: Labor },
       { path: "expenses", Component: Expenses },
+      { path: "account", Component: Account },
     ],
   },
 ]);
