@@ -2,8 +2,10 @@ import { Link } from "react-router";
 import { Button } from "../components/ui/button";
 import { Sprout, TrendingUp, Users, BarChart3 } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { useLanguage } from "../context/LanguageContext";
 
 export function Home() {
+  const { t } = useLanguage();
   const features = [
     {
       icon: Sprout,
@@ -35,11 +37,10 @@ export function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl font-bold text-gray-900 mb-6">
-                Manage Your Farm Resources Efficiently
+                {t("manageYourFarm")}
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Streamline your agricultural operations with our comprehensive farm management system. 
-                Track crops, manage labor, monitor resources, and control expenses all in one place.
+                {t("farmDescription")}
               </p>
               <div className="flex gap-4">
                 <Link to="/register">
@@ -69,10 +70,10 @@ export function Home() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Everything You Need to Run Your Farm
+            {t("everythingYouNeed")}
           </h2>
           <p className="text-lg text-gray-600">
-            Powerful tools designed specifically for modern farmers
+            {t("powerfulTools")}
           </p>
         </div>
 

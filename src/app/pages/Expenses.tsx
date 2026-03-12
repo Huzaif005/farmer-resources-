@@ -6,6 +6,7 @@ import { Label } from "../components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { Textarea } from "../components/ui/textarea";
 import { Plus, DollarSign, TrendingUp, TrendingDown, Filter } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 import {
   Dialog,
   DialogContent,
@@ -87,6 +88,7 @@ const initialExpenses: Expense[] = [
 const COLORS = ["#16a34a", "#22c55e", "#4ade80", "#86efac", "#bbf7d0", "#dcfce7", "#f0fdf4"];
 
 export function Expenses() {
+  const { t } = useLanguage();
   const [expenses, setExpenses] = useState<Expense[]>(initialExpenses);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [filterCategory, setFilterCategory] = useState<string>("all");
@@ -115,11 +117,11 @@ export function Expenses() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold">Expense Management</h1>
-          <p className="text-gray-600">Track and analyze farm expenses</p>
+          <h1 className="text-3xl font-bold">{t("expenseManagement")}</h1>
+          <p className="text-gray-600">{t("trackAnalyzeExpenses")}</p>
         </div>
         <Button onClick={() => setIsDialogOpen(true)} className="bg-green-600 hover:bg-green-700">
-          <Plus className="mr-2 h-4 w-4" /> Add Expense
+          <Plus className="mr-2 h-4 w-4" /> {t("addExpense")}
         </Button>
       </div>
 
@@ -127,7 +129,7 @@ export function Expenses() {
       <div className="grid gap-4 md:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Expenses</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("totalExpenses")}</CardTitle>
             <DollarSign className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
@@ -137,7 +139,7 @@ export function Expenses() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">This Month</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("thisMonth")}</CardTitle>
             <TrendingUp className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
@@ -147,7 +149,7 @@ export function Expenses() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Transactions</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("totalTransactions")}</CardTitle>
             <Filter className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
@@ -157,7 +159,7 @@ export function Expenses() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg. per Transaction</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("avgPerTransaction")}</CardTitle>
             <DollarSign className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>

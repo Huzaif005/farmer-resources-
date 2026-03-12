@@ -6,6 +6,7 @@ import { Label } from "../components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { WorkerTable, Worker } from "../components/WorkerTable";
 import { Plus, Users, Clock, DollarSign } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 import {
   Dialog,
   DialogContent,
@@ -64,6 +65,7 @@ const initialWorkers: Worker[] = [
 ];
 
 export function Labor() {
+  const { t } = useLanguage();
   const [workers, setWorkers] = useState<Worker[]>(initialWorkers);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingWorker, setEditingWorker] = useState<Worker | null>(null);
@@ -91,11 +93,11 @@ export function Labor() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold">Labor Management</h1>
-          <p className="text-gray-600">Manage your workforce and track labor costs</p>
+          <h1 className="text-3xl font-bold">{t("laborManagement")}</h1>
+          <p className="text-gray-600">{t("manageWorkforce")}</p>
         </div>
         <Button onClick={handleAdd} className="bg-green-600 hover:bg-green-700">
-          <Plus className="mr-2 h-4 w-4" /> Add Worker
+          <Plus className="mr-2 h-4 w-4" /> {t("addWorker")}
         </Button>
       </div>
 
@@ -103,7 +105,7 @@ export function Labor() {
       <div className="grid gap-4 md:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Workers</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("totalWorkers")}</CardTitle>
             <Users className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
@@ -113,7 +115,7 @@ export function Labor() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Hours</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("totalHours")}</CardTitle>
             <Clock className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
@@ -123,7 +125,7 @@ export function Labor() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Payroll</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("totalPayroll")}</CardTitle>
             <DollarSign className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
@@ -133,7 +135,7 @@ export function Labor() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg. Wage/Hour</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("avgWage")}</CardTitle>
             <DollarSign className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>

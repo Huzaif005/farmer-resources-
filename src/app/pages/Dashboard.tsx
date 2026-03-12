@@ -2,6 +2,7 @@ import { ResourceCard } from "../components/ResourceCard";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Sprout, Package, Users, DollarSign, TrendingUp, AlertCircle } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from "recharts";
+import { useLanguage } from "../context/LanguageContext";
 
 const monthlyExpenses = [
   { month: "Jan", amount: 4500 },
@@ -32,11 +33,12 @@ const alerts = [
 ];
 
 export function Dashboard() {
+  const { t } = useLanguage();
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Dashboard</h1>
-        <p className="text-gray-600">Welcome back! Here's what's happening on your farm.</p>
+        <h1 className="text-3xl font-bold">{t("dashboard")}</h1>
+        <p className="text-gray-600">{t("welcomeMessage")}</p>
       </div>
 
       {/* Alerts */}
@@ -71,25 +73,25 @@ export function Dashboard() {
       {/* Stats Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <ResourceCard
-          title="Active Crops"
+          title={t("activeCrops")}
           value="12"
           icon={Sprout}
           trend={{ value: 8, isPositive: true }}
         />
         <ResourceCard
-          title="Resources in Stock"
+          title={t("resourcesInStock")}
           value="248"
           icon={Package}
           trend={{ value: 5, isPositive: true }}
         />
         <ResourceCard
-          title="Active Workers"
+          title={t("activeWorkers")}
           value="24"
           icon={Users}
           trend={{ value: -2, isPositive: false }}
         />
         <ResourceCard
-          title="Monthly Expenses"
+          title={t("monthlyExpenses")}
           value="₹6,800"
           icon={DollarSign}
           trend={{ value: 12, isPositive: false }}
@@ -136,7 +138,7 @@ export function Dashboard() {
       {/* Recent Activity */}
       <Card>
         <CardHeader>
-          <CardTitle>Recent Activity</CardTitle>
+          <CardTitle>{t("recentActivity")}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
