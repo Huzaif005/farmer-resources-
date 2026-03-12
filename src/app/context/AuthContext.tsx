@@ -29,7 +29,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   });
 
   const login = async (email: string, password: string) => {
-    // Mock login
+    // Attempt local API fetch, default back to mock
+    try {
+      const res = await fetch(`http://localhost:5000/api/profile/${email}`);
+      if (res.ok) {
+        const u = await res.json();
+        if (u && u.email) {
+          const loadedUser = {
+            id: u.id || "1",
+            name: u.full_name,
+            email: u.email,
+            phone: u.phone,
+            farmName: u.farm_name,
+            address: u.address,
+            totalArea: u.land_area,
+            cropType: u.crop_type
+          };
+          setUser(loadedUser);
+          localStorage.setItem("farmer_auth_user", JSON.stringify(loadedUser));
+          return;
+        }
+      }
+    } catch(err) {
+      console.log("Backend not running, using mock local login");
+    }
+
+    // Mock login fallback
     await new Promise(resolve => setTimeout(resolve, 500));
     const u = {
       id: "1",
@@ -42,23 +67,56 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const register = async (name: string, email: string, password: string, farmName: string) => {
-    // Mock registration
-    await new Promise(resolve => setTimeout(resolve, 500));
     const u = {
       id: String(Date.now()),
       name: name,
       email: email,
       farmName: farmName,
     };
+    // Attempt local API save
+    try {
+      await fetch(`http://localhost:5000/api/profile`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          full_name: name,
+          email: email,
+          farm_name: farmName
+        })
+      });
+    } catch(err) {
+      console.log("Backend not running, mock local registration used");
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 500));
     setUser(u);
     localStorage.setItem("farmer_auth_user", JSON.stringify(u));
   };
 
-  const updateUser = (updates: Partial<User>) => {
+  const updateUser = async (updates: Partial<User>) => {
     if (!user) return;
     const updatedUser = { ...user, ...updates };
     setUser(updatedUser);
     localStorage.setItem("farmer_auth_user", JSON.stringify(updatedUser));
+
+    // Attempt local API save dynamically
+    try {
+      await fetch(`http://localhost:5000/api/profile`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          full_name: updatedUser.name,
+          email: updatedUser.email,
+          phone: updatedUser.phone,
+          farm_name: updatedUser.farmName,
+          address: updatedUser.address,
+          land_area: updatedUser.totalArea,
+          crop_type: updatedUser.cropType
+        })
+      });
+    } catch (err) {
+      console.log("Backend not running. Saved only to LocalStorage");
+    }
   };
 
   const logout = () => {
