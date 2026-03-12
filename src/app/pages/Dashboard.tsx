@@ -90,7 +90,7 @@ export function Dashboard() {
         />
         <ResourceCard
           title="Monthly Expenses"
-          value="$6,800"
+          value="₹6,800"
           icon={DollarSign}
           trend={{ value: 12, isPositive: false }}
         />

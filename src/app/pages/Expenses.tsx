@@ -131,7 +131,7 @@ export function Expenses() {
             <DollarSign className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${totalExpenses.toLocaleString()}</div>
+            <div className="text-2xl font-bold">₹{totalExpenses.toLocaleString()}</div>
             <p className="text-xs text-gray-500">All time</p>
           </CardContent>
         </Card>
@@ -141,7 +141,7 @@ export function Expenses() {
             <TrendingUp className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${thisMonthExpenses.toLocaleString()}</div>
+            <div className="text-2xl font-bold">₹{thisMonthExpenses.toLocaleString()}</div>
             <p className="text-xs text-green-600">+12% from last month</p>
           </CardContent>
         </Card>
@@ -162,7 +162,7 @@ export function Expenses() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              ${(totalExpenses / expenses.length).toFixed(2)}
+              ₹{(totalExpenses / expenses.length).toFixed(2)}
             </div>
             <p className="text-xs text-gray-500">Average</p>
           </CardContent>
@@ -213,7 +213,7 @@ export function Expenses() {
                     <div key={category.name} className="space-y-2">
                       <div className="flex justify-between text-sm">
                         <span className="capitalize font-medium">{category.name}</span>
-                        <span className="text-gray-600">${category.value.toLocaleString()}</span>
+                        <span className="text-gray-600">₹{category.value.toLocaleString()}</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
@@ -282,7 +282,7 @@ export function Expenses() {
                     <TableCell>{expense.description}</TableCell>
                     <TableCell>{expense.paymentMethod}</TableCell>
                     <TableCell className="text-right font-medium">
-                      ${expense.amount.toLocaleString()}
+                      ₹{expense.amount.toLocaleString()}
                     </TableCell>
                   </TableRow>
                 ))
@@ -327,7 +327,7 @@ export function Expenses() {
               <Textarea placeholder="Describe the expense..." rows={3} />
             </div>
             <div className="space-y-2">
-              <Label>Amount ($)</Label>
+              <Label>Amount (₹)</Label>
               <Input type="number" placeholder="0.00" step="0.01" />
             </div>
             <div className="space-y-2">

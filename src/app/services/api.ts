@@ -1,13 +1,5 @@
 // API Service Layer
-// This file contains API calls that connect to the Supabase backend
-import { projectId, publicAnonKey } from "/utils/supabase/info";
-
-const API_URL = `https://${projectId}.supabase.co/functions/v1/make-server-57ac035d`;
-
-const headers = {
-  "Content-Type": "application/json",
-  Authorization: `Bearer ${publicAnonKey}`,
-};
+// Replaced remote backend with reliable local state mocks for client-side demo
 
 export interface ApiResponse<T> {
   data: T;
@@ -15,138 +7,55 @@ export interface ApiResponse<T> {
   message?: string;
 }
 
-// Crops API
-export const cropsApi = {
-  getAll: async () => {
-    const response = await fetch(`${API_URL}/crops`, { headers });
-    return await response.json();
-  },
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-  create: async (cropData: any) => {
-    const response = await fetch(`${API_URL}/crops`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(cropData),
-    });
-    return await response.json();
-  },
-
-  update: async (id: string, cropData: any) => {
-    const response = await fetch(`${API_URL}/crops/${id}`, {
-      method: "PUT",
-      headers,
-      body: JSON.stringify(cropData),
-    });
-    return await response.json();
-  },
-
-  delete: async (id: string) => {
-    const response = await fetch(`${API_URL}/crops/${id}`, {
-      method: "DELETE",
-      headers,
-    });
-    return await response.json();
-  },
+const getStorage = <T>(key: string): T[] => {
+  const data = localStorage.getItem(key);
+  return data ? JSON.parse(data) : [];
 };
 
-// Resources API
-export const resourcesApi = {
-  getAll: async () => {
-    const response = await fetch(`${API_URL}/resources`, { headers });
-    return await response.json();
-  },
-
-  create: async (resourceData: any) => {
-    const response = await fetch(`${API_URL}/resources`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(resourceData),
-    });
-    return await response.json();
-  },
-
-  update: async (id: string, resourceData: any) => {
-    const response = await fetch(`${API_URL}/resources/${id}`, {
-      method: "PUT",
-      headers,
-      body: JSON.stringify(resourceData),
-    });
-    return await response.json();
-  },
-
-  delete: async (id: string) => {
-    const response = await fetch(`${API_URL}/resources/${id}`, {
-      method: "DELETE",
-      headers,
-    });
-    return await response.json();
-  },
+const setStorage = <T>(key: string, data: T[]) => {
+  localStorage.setItem(key, JSON.stringify(data));
 };
 
-// Labor API
-export const laborApi = {
-  getAll: async () => {
-    const response = await fetch(`${API_URL}/workers`, { headers });
-    return await response.json();
+const generateId = () => Math.random().toString(36).substring(2, 9);
+
+// Mock implementation helper
+const createMockApi = <T extends { id: string }>(storageKey: string) => ({
+  getAll: async (): Promise<ApiResponse<T[]>> => {
+    await delay(300);
+    return { data: getStorage<T>(storageKey), success: true };
   },
 
-  create: async (workerData: any) => {
-    const response = await fetch(`${API_URL}/workers`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(workerData),
-    });
-    return await response.json();
+  create: async (data: Omit<T, "id">): Promise<ApiResponse<T>> => {
+    await delay(300);
+    const newItem = { ...data, id: generateId() } as unknown as T;
+    const items = getStorage<T>(storageKey);
+    setStorage(storageKey, [...items, newItem]);
+    return { data: newItem, success: true };
   },
 
-  update: async (id: string, workerData: any) => {
-    const response = await fetch(`${API_URL}/workers/${id}`, {
-      method: "PUT",
-      headers,
-      body: JSON.stringify(workerData),
-    });
-    return await response.json();
+  update: async (id: string, data: Partial<T>): Promise<ApiResponse<T>> => {
+    await delay(300);
+    const items = getStorage<T>(storageKey);
+    const index = items.findIndex((item) => item.id === id);
+    if (index === -1) throw new Error("Item not found");
+    
+    const updatedItem = { ...items[index], ...data };
+    items[index] = updatedItem;
+    setStorage(storageKey, items);
+    return { data: updatedItem, success: true };
   },
 
-  delete: async (id: string) => {
-    const response = await fetch(`${API_URL}/workers/${id}`, {
-      method: "DELETE",
-      headers,
-    });
-    return await response.json();
+  delete: async (id: string): Promise<ApiResponse<boolean>> => {
+    await delay(300);
+    const items = getStorage<T>(storageKey);
+    setStorage(storageKey, items.filter((item) => item.id !== id));
+    return { data: true, success: true };
   },
-};
+});
 
-// Expenses API
-export const expensesApi = {
-  getAll: async () => {
-    const response = await fetch(`${API_URL}/expenses`, { headers });
-    return await response.json();
-  },
-
-  create: async (expenseData: any) => {
-    const response = await fetch(`${API_URL}/expenses`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(expenseData),
-    });
-    return await response.json();
-  },
-
-  update: async (id: string, expenseData: any) => {
-    const response = await fetch(`${API_URL}/expenses/${id}`, {
-      method: "PUT",
-      headers,
-      body: JSON.stringify(expenseData),
-    });
-    return await response.json();
-  },
-
-  delete: async (id: string) => {
-    const response = await fetch(`${API_URL}/expenses/${id}`, {
-      method: "DELETE",
-      headers,
-    });
-    return await response.json();
-  },
-};
+export const cropsApi = createMockApi("crops_data");
+export const resourcesApi = createMockApi("resources_data");
+export const laborApi = createMockApi("labor_data");
+export const expensesApi = createMockApi("expenses_data");

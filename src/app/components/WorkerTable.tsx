@@ -73,7 +73,7 @@ export function WorkerTable({ workers, onEdit, onDelete }: WorkerTableProps) {
                   </Badge>
                 </TableCell>
                 <TableCell>{worker.hoursWorked}h</TableCell>
-                <TableCell>${worker.wage}</TableCell>
+                <TableCell>₹{worker.wage}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end gap-2">
                     {onEdit && (

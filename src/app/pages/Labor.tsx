@@ -127,7 +127,7 @@ export function Labor() {
             <DollarSign className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${totalPayroll.toLocaleString()}</div>
+            <div className="text-2xl font-bold">₹{totalPayroll.toLocaleString()}</div>
             <p className="text-xs text-gray-500">This month</p>
           </CardContent>
         </Card>
@@ -138,7 +138,7 @@ export function Labor() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              ${(totalPayroll / totalHours).toFixed(2)}
+              ₹{(totalPayroll / totalHours).toFixed(2)}
             </div>
             <p className="text-xs text-gray-500">Average rate</p>
           </CardContent>
@@ -207,7 +207,7 @@ export function Labor() {
                 <Input type="number" placeholder="160" defaultValue={editingWorker?.hoursWorked} />
               </div>
               <div className="space-y-2">
-                <Label>Wage per Hour ($)</Label>
+                <Label>Wage per Hour (₹)</Label>
                 <Input type="number" placeholder="18" defaultValue={editingWorker?.wage} />
               </div>
             </div>
