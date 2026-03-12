@@ -127,7 +127,7 @@ export function Labor() {
             <DollarSign className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">₹{totalPayroll.toLocaleString()}</div>
+            <div className="text-2xl font-bold">₹{totalPayroll.toLocaleString("en-IN")}</div>
             <p className="text-xs text-gray-500">This month</p>
           </CardContent>
         </Card>
